@@ -4,7 +4,7 @@ from .tools.print import print_policy_map
 from .policy.policy import policy_evaluation, policy_improvement, policy_iteration, value_iteration
 from .env.gridworld import GridWorld
 
-def policy_basic():
+def policy_evalution_exec():
     env = GridWorld()
 
     policy = [np.array([0.25,0.25,0.25,0.25]) for s in range(env.grid_map.shape[0] * env.grid_map.shape[1])]
@@ -47,8 +47,11 @@ def value_iteration_exec():
 
 
 if __name__ == "__main__":
-    # policy_basic()
+    print("[Policy Evaluation]++++++++++++++++++++++++++++++++++++")
+    policy_evalution_exec()
 
+    print("[Policy Iteration]++++++++++++++++++++++++++++++++++++")
     policy_iteration_exec()
 
-    # value_iteration_exec()
+    print("[Value Iteration]++++++++++++++++++++++++++++++++++++")
+    value_iteration_exec()
