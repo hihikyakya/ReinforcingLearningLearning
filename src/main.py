@@ -1,12 +1,13 @@
 import numpy as np
 
-from .policy.policy import policy_evaluation, policy_improvement
+from .tools.print import print_policy_map
+from .policy.policy import policy_evaluation, policy_improvement, policy_iteration, value_iteration
 from .env.gridworld import GridWorld
 
-def main():
+def policy_basic():
     env = GridWorld()
-    policy = [np.array([0.25]*4) for s in range(env.state.shape[0] * env.state.shape[1])] # 갈 수 있는 모든 칸의 policy(pi)
-        
+
+    policy = [np.array([0.25,0.25,0.25,0.25]) for s in range(env.grid_map.shape[0] * env.grid_map.shape[1])]
 
     V = policy_evaluation(env, policy)
 
@@ -17,16 +18,37 @@ def main():
 
     improved_policy = policy_improvement(V, env)
 
-    y_dim, x_dim=env.state.shape
-    for y in range(y_dim):
-        row=[]
-        for x in range(x_dim):
-            state_index = y * x_dim + x
-            best_action = np.argmax(improved_policy[state_index])
-            row.append(int(best_action))
+    print_policy_map(improved_policy, env)
 
-        print(row) # 0: up, 1: down, 2: left, 3:right
+
+def policy_iteration_exec():
+    env = GridWorld()
+    policy = [np.array([0.25,0.25,0.25,0.25]) for s in range(env.grid_map.shape[0] * env.grid_map.shape[1])] # 갈 수 있는 모든 칸의 policy(pi)
+        
+
+    optimal_V, optimal_policy = policy_iteration(env, policy)
+
+    print("\nOptimal value function: ")
+    print(np.round(optimal_V, 2))
+
+    print("\nOptimal policy:")
+    print_policy_map(optimal_policy, env)
+
+def value_iteration_exec():
+    env = GridWorld()
+
+    optimal_V_vi, optimal_policy_vi = value_iteration(env)
+
+    print("\nOptimal value function (Value Iteration):")
+    print(np.round(optimal_V_vi, 2))
+
+    print("\nOptimal policy (Value Iteration):")
+    print_policy_map(optimal_policy_vi, env)
 
 
 if __name__ == "__main__":
-    main()
+    # policy_basic()
+
+    policy_iteration_exec()
+
+    # value_iteration_exec()
