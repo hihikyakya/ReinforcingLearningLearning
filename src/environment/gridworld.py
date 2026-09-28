@@ -51,5 +51,5 @@ class GridWorld:
         if s_t[0] == self.goal_pos[0] and s_t[1] == self.goal_pos[1]:
             return 0
         else:
-            return -1 if not (s_t[0]==s_next[0] and s_t[1]==s_next[1]) else -1.5
+            return -1
             
