@@ -2,7 +2,7 @@ import numpy as np
 
 from .tools.print import print_policy_map
 from .policy.policy import policy_evaluation, policy_improvement, policy_iteration, value_iteration
-from .env.gridworld import GridWorld
+from .environment.gridworld import GridWorld
 
 def policy_evalution_exec():
     env = GridWorld()

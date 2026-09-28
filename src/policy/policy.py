@@ -1,7 +1,7 @@
 import numpy as np
 from numpy.typing import NDArray
 
-from ..env.gridworld import GridWorld
+from ..environment.gridworld import GridWorld
 from ..tools.print import print_policy_map, print_value_map
 
 

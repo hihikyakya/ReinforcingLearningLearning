@@ -1,7 +1,7 @@
 import numpy as np
 from numpy.typing import NDArray
 
-from ..env.gridworld import GridWorld
+from ..environment.gridworld import GridWorld
 
 def print_value_map(V:NDArray):
     print("State value map:")
